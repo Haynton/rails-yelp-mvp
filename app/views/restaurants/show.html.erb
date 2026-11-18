@@ -1,0 +1,42 @@
+<div class="container py-5">
+  <%= link_to "← Tous les restaurants",
+              restaurants_path,
+              class: "link-secondary text-decoration-none fw-semibold" %>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-12 col-lg-9">
+      <div class="card border-0 shadow rounded-4 overflow-hidden">
+        <div class="card-body p-4 p-md-5 text-white bg-success">
+          <span class="badge text-bg-warning rounded-pill mb-3">
+            <%= @restaurant.category.capitalize %>
+          </span>
+
+          <h1 class="display-4 fw-bold mb-2"><%= @restaurant.name %></h1>
+          <p class="fs-5 mb-0 text-white-50">Une adresse à découvrir</p>
+        </div>
+
+        <div class="card-body p-4 p-md-5">
+          <div class="d-flex align-items-center gap-3">
+          <p>Located in <%= @restaurant.address %></p>
+            </div>
+          </div>
+          <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-outline-success rounded-pill px-4 m-4" %>
+        </div>
+          <div>
+            <ul class="list-group mb-2 mt-4">
+              <% @restaurant.reviews.each do |review| %>
+                <li class="list-group-item d-flex justify-content-between">
+                  <div><%= review.content %></div>
+                  <div><%= review.rating %>/5</div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <div class="card-footer bg-white border-0 px-4 px-md-5 pb-4">
+          <%= link_to "Retour à la liste",
+                      restaurants_path,
+                      class: "btn btn-outline-success rounded-pill px-4 mt-4" %>
+        </div>
+      </div>
+    </div>
+</div>
